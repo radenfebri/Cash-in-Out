@@ -19,7 +19,7 @@ class CashResource extends JsonResource
             'name' => $this->name,
             'slug' => $this->slug,
             'description' => $this->description,
-            'when' => $this->when->format("d F Y H:m"),
+            'when' => $this->when->format("d F Y H:i"),
             'amount' => str_replace(',' , '.' , number_format( (abs($this->amount) ) )),
             'isCredit' => ($this->amount < 0) ? true : false,
         ];

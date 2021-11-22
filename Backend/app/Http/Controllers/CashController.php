@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\CashResource;
+use App\Models\Cash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -53,5 +54,11 @@ class CashController extends Controller
         return response()->json([
             'message' => 'The transaction has been saved.'
         ]);
+
+    }
+
+    public function show(Cash $cash)
+    {
+        return new CashResource($cash);
     }
 }
