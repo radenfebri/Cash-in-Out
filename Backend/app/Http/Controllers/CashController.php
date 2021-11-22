@@ -44,8 +44,9 @@ class CashController extends Controller
 
 
         $slug = request('name') . "-" . Str::random(6);
-        $when = request('when') ?? $to;
-        Auth::user()->cashes()->create([
+        $when = request('when') ?? now();
+
+        $cash = Auth::user()->cashes()->create([
             'name' => request('name'),
             'slug' => Str::slug($slug),
             'when' => $when,
@@ -54,7 +55,8 @@ class CashController extends Controller
         ]);
 
         return response()->json([
-            'message' => 'The transaction has been saved.'
+            'message' => 'The transaction has been saved.',
+            'cash' => new CashResource($cash)
         ]);
 
     }
