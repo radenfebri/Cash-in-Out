@@ -64,6 +64,8 @@ class CashController extends Controller
 
     public function show(Cash $cash)
     {
+        $this->authorize('show', $cash);
+
         return new CashResource($cash);
     }
 
